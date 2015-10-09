@@ -68,7 +68,7 @@ class Resource():
     def __init__(self, url, processes=0):
         self.url = url
         FETCHED_URLS.add(url)
-       self.request = request.Request(url)
+        self.request = request.Request(url)
         self._processes = processes
         try:
             self.response = request.urlopen(self.request)
