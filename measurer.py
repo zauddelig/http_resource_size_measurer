@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# this is a stub! don't expect it to work, most of all the html parse is still untested and will likely break
 from urllib import request
 import urllib.error
 from multiprocessing import Pool, Lock
@@ -35,6 +37,7 @@ class LinksGetter(HTMLParser):
             return
         else:
             if not link.startswith("http"):
+                    # note we are not parsing the base url so it will not always work
                     link = self.url + link
             self.links.append(link)
 
