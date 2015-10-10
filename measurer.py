@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # this is a stub! don't expect it to work, most of all the html parse is still untested and will likely break
 from urllib import request
 import urllib.error
