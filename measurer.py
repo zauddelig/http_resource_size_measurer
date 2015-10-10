@@ -50,7 +50,7 @@ class LinksGetter(HTMLParser):
 
     def parse_relative_url(self, link):
         """
-            partial implementation of http://www.ietf.org/rfc/rfc1808.txt missing query inheritance
+            partial implementation of http://www.ietf.org/rfc/rfc1808.txt
         """
         match = self.regex.search(self.url)
         protocol = match.group(0)
@@ -133,7 +133,7 @@ class Resource():
 
 
     def _get_links(self, html):
-        parser = LinksGetter(self.url)
+        parser = LinksGetter(self.url, strict=False)
         parser.feed(str(html))
         return parser.links
 
@@ -188,14 +188,18 @@ class Resource():
         for resource in self.resources:
             for sub_resource in resource.flat_resources_tree():
                 yield self, sub_resource
-    def get_total_time(self):
+
+    def get_mean_time(self):
         """
-            Return the total time of the resources tree
+            Return the harmonic mean of the resources
         """
-        time = 0
-        for resource in self.flat_resources_tree():
-            time += resource.time
-        return time
+        mean_time = self.time / self.size
+        resources = tuple(self.flat_resources_tree())
+        length = len(resources) + 1
+        for resource in resources:
+            mean_time +=  resource.size and resource.time / resource.size  or 0
+        return length/mean_time
+
     def get_total_size(self):
         """
             Return the total size of the resources tree
@@ -209,7 +213,7 @@ class Resource():
         return len(list(self.resources))
 
     def __str__(self):
-        return "%s,\t%ss,\t%sB" %(self.url, self.time, self.size)
+        return "%s,%ss,%sB" %(self.url, self.time, self.size)
 
 
 if __name__ == "__main__":
@@ -229,6 +233,6 @@ if __name__ == "__main__":
     if args.tree:
         for branch in main_resource.piramid_tree():
             point, branch= branch[-1], branch[:-1]
-            print("".join("\t" for e in branch) + str(point))
-    print("Total size:\t%sB\nTotal time:\t%ss" % (main_resource.get_total_size(), main_resource.get_total_time()))
+            print("".join("\t" for e in branch) + str(point).replace(",", ",\t"))
+    print("Total size:\t%sB\nMean Speed:\t%sB/s" % (main_resource.get_total_size(), main_resource.get_mean_time()))
 
