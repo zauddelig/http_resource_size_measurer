@@ -26,7 +26,7 @@ RoadMap
 
 Open Points
 ===========
-I have yet to decide if  I should use requests or urllib3 or just leave it like it is.
+I have yet to decide if  I should use requests or urllib3 or just leave it like it is and use only stdlib.
 
 
 
