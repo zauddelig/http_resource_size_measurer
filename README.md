@@ -22,7 +22,7 @@ RoadMap
 * 0.7 - The mean will be calculated as if the connections were recycled.
 * 0.8 - `-c --csv` parameter will write a csv file out of the resources tree.
 * 0.9 - `-j --json` parameter will write to stdout a json object reppresenting the structure.
-* 1.0 - The Link parser will be fully compliant to (rfc1808)[http://www.ietf.org/rfc/rfc1808.txt]
+* 1.0 - The Link parser will be fully compliant to [rfc1808](http://www.ietf.org/rfc/rfc1808.txt)
 
 
 
