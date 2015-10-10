@@ -66,7 +66,7 @@ class TestLinksGetter(unittest.TestCase):
 
 class TestResource(unittest.TestCase):
 	"""
-		for testing that we need a simple server on a custom port
+		We it test using unlikely to change resources
 	"""
 
 	def test_simple(self):
@@ -79,7 +79,8 @@ class TestResource(unittest.TestCase):
 
 	def test_non_html(self):
 		resource = Resource("http://www.ietf.org/rfc/rfc1808.txt")
-		self.assertAlmostEqual(resource.size, 34130, delta=1000)  # had to give a rather big delta here
+		# had to give a rather big delta here, I was not able to assess the precise size of the page
+		self.assertAlmostEqual(resource.size, 34130, delta=1000)
 		resource = Resource("http://www.governo.it/Governo/Costituzione/CostituzioneRepubblicaItaliana.pdf")
 		self.assertAlmostEqual(resource.size, 188249)
 
