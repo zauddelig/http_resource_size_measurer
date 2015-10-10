@@ -24,6 +24,9 @@ RoadMap
 * 0.9 - `-j --json` parameter will write to stdout a json object reppresenting the structure.
 * 1.0 - The Link parser will be fully compliant to [rfc1808](http://www.ietf.org/rfc/rfc1808.txt)
 
+Open Points
+===========
+I have yet to decide if  I should use requests or urllib3 or just leave it like it is.
 
 
 
