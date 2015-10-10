@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 import argparse
 import logging
 import re
+import sys
 from time import time
 
 class WrongCondition(Exception):
@@ -133,7 +134,10 @@ class Resource():
 
 
     def _get_links(self, html):
-        parser = LinksGetter(self.url, strict=False)
+        kwargs = {}
+        if sys.version_info < (3, 4):
+            kwargs["strict"] = False
+        parser = LinksGetter(self.url, **kwargs)
         parser.feed(str(html))
         return parser.links
 
